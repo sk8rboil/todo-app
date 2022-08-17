@@ -14,11 +14,14 @@ class MyHomePage extends GetView<HomeController> {
         child: ListView(
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
-            Text(
-              'MY LIST',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'MY LIST',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],
