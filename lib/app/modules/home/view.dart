@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_application/app/modules/home/controller.dart';
+import 'package:todo_application/app/modules/home/widgets/add_card.dart';
 
 class MyHomePage extends GetView<HomeController> {
   const MyHomePage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class MyHomePage extends GetView<HomeController> {
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(10.0),
               child: Text(
                 'MY LIST',
                 style: TextStyle(
@@ -23,6 +24,14 @@ class MyHomePage extends GetView<HomeController> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+            ),
+            GridView.count(
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              physics: ClampingScrollPhysics(),
+              children: <Widget>[
+                AddCard(),
+              ],
             ),
           ],
         ),
