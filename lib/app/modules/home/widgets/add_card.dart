@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors, unrelated_type_equality_checks
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class AddCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final icon = getIcons();
+    final icons = getIcons();
     var squareWidth = Get.width - 12.0;
 
     return Container(
@@ -45,6 +45,29 @@ class AddCard extends StatelessWidget {
                         },
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Wrap(
+                        spacing: 2.0,
+                        children: icons
+                            .map((e) => Obx(() {
+                                  final index = icons.indexOf(e);
+                                  return ChoiceChip(
+                                    selectedColor: Colors.grey[200],
+                                    pressElevation: 0,
+                                    backgroundColor: Colors.white,
+                                    label: e,
+                                    selected: homeCtrl.chipIndex.value == index,
+                                    onSelected: (bool selected) {
+                                      homeCtrl.chipIndex.value =
+                                          selected ? index : 0;
+                                    },
+                                  );
+                                }))
+                            .toList(),
+                      ),
+                    ),
+                    ElevatedButton(onPressed: () {}, child: Text('OK')),
                   ],
                 )),
           );
