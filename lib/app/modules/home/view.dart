@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo_application/app/data/models/task.dart';
 import 'package:todo_application/app/modules/home/controller.dart';
 import 'package:todo_application/app/modules/home/widgets/add_card.dart';
+import 'package:todo_application/app/modules/home/widgets/task_card.dart';
 
 class MyHomePage extends GetView<HomeController> {
   const MyHomePage({Key? key}) : super(key: key);
@@ -30,6 +32,9 @@ class MyHomePage extends GetView<HomeController> {
               shrinkWrap: true,
               physics: ClampingScrollPhysics(),
               children: <Widget>[
+                TaskCard(
+                    task:
+                        Task(title: 'title', icon: 0xe59c, color: '#FF2B60E6')),
                 AddCard(),
               ],
             ),
