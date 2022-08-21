@@ -10,10 +10,10 @@ class HomeController extends GetxController {
   HomeController({required this.taskRepository});
 
   final formkey = GlobalKey<FormState>();
+  final editCtrl = TextEditingController();
   final tasks = <Task>[].obs;
   final chipIndex = 0.obs;
-
-  TextEditingController editCtrl = TextEditingController();
+  final deleting = false.obs;
 
   @override
   void onInit() {
@@ -24,6 +24,7 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {
+    editCtrl.dispose();
     super.onClose();
   }
 

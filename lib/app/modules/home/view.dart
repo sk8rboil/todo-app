@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo_application/app/data/models/task.dart';
 import 'package:todo_application/app/modules/home/controller.dart';
 import 'package:todo_application/app/modules/home/widgets/add_card.dart';
 import 'package:todo_application/app/modules/home/widgets/task_card.dart';
@@ -27,19 +26,24 @@ class MyHomePage extends GetView<HomeController> {
                 ),
               ),
             ),
-            GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              physics: ClampingScrollPhysics(),
-              children: <Widget>[
-                TaskCard(
-                    task:
-                        Task(title: 'title', icon: 0xe59c, color: '#FF2B60E6')),
-                AddCard(),
-              ],
-            ),
+            Obx(() => GridView.count(
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                  children: <Widget>[
+                    ...controller.tasks
+                        .map((element) => TaskCard(task: element))
+                        .toList(),
+                    AddCard(),
+                  ],
+                )),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.indigo,
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
     );
   }

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:todo_application/app/core/utils/extension.dart';
 import 'package:todo_application/app/data/models/task.dart';
 import 'package:todo_application/app/modules/home/controller.dart';
@@ -18,7 +19,7 @@ class TaskCard extends StatelessWidget {
     return Container(
       width: squareWidth / 2,
       height: squareWidth / 2,
-      margin: EdgeInsets.all(3.0),
+      margin: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -29,7 +30,61 @@ class TaskCard extends StatelessWidget {
           )
         ],
       ),
-      child: Column(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        // ignore: prefer_const_literals_to_create_immutables
+        children: <Widget>[
+          // change after finish CRUD
+          StepProgressIndicator(
+            totalSteps: 100,
+            currentStep: 90,
+            size: 5,
+            padding: 0,
+            selectedGradientColor: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              // ignore: prefer_const_literals_to_create_immutables
+              colors: [
+                color.withOpacity(0.5),
+                color,
+              ],
+            ),
+            unselectedGradientColor: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              // ignore: prefer_const_literals_to_create_immutables
+              colors: [
+                Colors.white,
+                Colors.white,
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(6.0.wp),
+            child: Icon(
+              color: color,
+              IconData(
+                task.icon,
+                fontFamily: 'MaterialIcons',
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(6.0.wp),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(task.title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12.0.sp,
+                    )),
+                Text('${task.todos?.length ?? 0} Task')
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

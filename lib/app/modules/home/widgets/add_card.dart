@@ -21,7 +21,7 @@ class AddCard extends StatelessWidget {
     return Container(
       width: squareWidth / 2,
       height: squareWidth / 2,
-      margin: EdgeInsets.all(3.0),
+      margin: EdgeInsets.all(10.0),
       child: InkWell(
         onTap: () async {
           await Get.defaultDialog(
