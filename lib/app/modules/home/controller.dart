@@ -32,11 +32,19 @@ class HomeController extends GetxController {
     chipIndex.value = value;
   }
 
+  void changeDeleting(bool value) {
+    deleting.value = value;
+  }
+
   bool addTask(Task task) {
     if (tasks.contains(task)) {
       return false;
     }
     tasks.add(task);
     return true;
+  }
+
+  void deleteTask(Task task) {
+    tasks.remove(task);
   }
 }
